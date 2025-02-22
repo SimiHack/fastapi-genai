@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-genai
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi-genai
+  template:
+    metadata:
+      labels:
+        app: fastapi-genai
+    spec:
+      containers:
+      - name: fastapi-genai
+        image: your-container-registry.azurecr.io/fastapi-genai
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: fastapi-secrets
+ 
