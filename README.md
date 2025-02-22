@@ -2,7 +2,6 @@
 
 This is a scalable **FastAPI application** for integrating **Generative AI** with **Azure Services**. It includes authentication, caching, and database support.
 
----
 
 ## 🚀 Features:
 - **OpenAI GPT-4 Integration** via Azure OpenAI Service
@@ -11,33 +10,6 @@ This is a scalable **FastAPI application** for integrating **Generative AI** wit
 - **PostgreSQL Database** for storing chat history
 - **Kubernetes-ready deployment** with Docker
 
----
-
-## 📂 Project Structure
-
-
-fastapi-genai-azure/
-│── app/
-│   ├── main.py              # FastAPI entry point
-│   ├── auth.py              # User authentication (JWT-based)
-│   ├── config.py            # Load environment variables
-│   ├── models.py            # API request/response schemas
-│   ├── routes/
-│   │   ├── chat.py          # Chat API endpoints
-│   │   ├── health.py        # Health check
-│   ├── db.py                # Database connection
-│   ├── cache.py             # Redis caching
-│   ├── services/
-│   │   ├── openai_service.py # OpenAI API logic
-│── tests/
-│── Dockerfile               # Containerization for Azure Kubernetes
-│── deployment.yaml          # Kubernetes Deployment config
-│── requirements.txt         # Python dependencies
-│── .env                     # Environment variables
-│── README.md                # Documentation
-
-
----
 
 ## 🔧 Setup & Installation
 
