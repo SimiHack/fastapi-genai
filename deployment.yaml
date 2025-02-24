@@ -1,23 +1,55 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fastapi-genai
+  name: fastapi-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: fastapi-genai
+      app: fastapi
   template:
     metadata:
       labels:
-        app: fastapi-genai
+        app: fastapi
     spec:
       containers:
-      - name: fastapi-genai
-        image: your-container-registry.azurecr.io/fastapi-genai
-        ports:
-        - containerPort: 8000
-        envFrom:
-        - secretRef:
-            name: fastapi-secrets
- 
+        - name: fastapi
+          image: fastapiacrnew.azurecr.io/my-fastapi-app:v1
+          ports:
+            - containerPort: 8000
+          env:
+            - name: AZURE_OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fastapi-secrets
+                  key: AZURE_OPENAI_API_KEY
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: fastapi-secrets
+                  key: REDIS_URL
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fastapi-secrets
+                  key: REDIS_PASSWORD
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: fastapi-secrets
+                  key: DATABASE_URL
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fastapi-secrets
+                  key: SECRET_KEY
+            - name: OPENAI_API_TYPE
+              valueFrom:
+                secretKeyRef:
+                  name: fastapi-secrets
+                  key: OPENAI_API_TYPE
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: fastapi-secrets
+                  key: OPENAI_API_KEY

@@ -15,8 +15,8 @@ This is a scalable **FastAPI application** for integrating **Generative AI** wit
 
 1️⃣ **Clone the repository**
 
-git clone https://github.com/your-repo/fastapi-genai-azure.git
-cd fastapi-genai-azure
+git clone https://github.com/SimiHack/fastapi-genai.git
+cd fastapi-genai
 
 
 2️⃣ **Install dependencies**
