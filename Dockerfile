@@ -1,5 +1,4 @@
-# Use ARM64-compatible base image explicitly
-FROM --platform=linux/arm64 python:3.10-slim
+FROM python:3.10-slim
 
 # Set the working directory
 WORKDIR /app
