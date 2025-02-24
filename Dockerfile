@@ -1,21 +1,22 @@
-# Use a specific architecture-compatible base image
-FROM --platform=linux/amd64 python:3.10-slim
+# Use ARM64-compatible base image explicitly
+FROM --platform=linux/arm64 python:3.10-slim
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy dependency file
+# Copy and install dependencies
 COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the application files
+# Copy application files
 COPY . .
 
-# Ensure Uvicorn is installed and runs correctly
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir uvicorn fastapi
+# Ensure correct installation of uvicorn & fastapi
+RUN pip install --no-cache-dir --force-reinstall uvicorn fastapi
 
-# Run the application
-CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Expose port
+EXPOSE 8000
+
+# Run FastAPI app
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
