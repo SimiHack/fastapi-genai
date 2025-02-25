@@ -7,6 +7,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 
 async def get_db():
     try:
+        logging.info(f"Attempting to connect to the database at {DATABASE_URL}")
         conn = await asyncpg.connect(DATABASE_URL)
         logging.info("Database connection established")
         return conn

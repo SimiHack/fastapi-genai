@@ -5,13 +5,9 @@ from app.auth import authenticate_user
 
 app = FastAPI()
 
-app.include_router(chat.router, prefix="/api", tags=["Chat"])
-app.include_router(health.router, prefix="/api", tags=["Health"])
+app.include_router(chat.router, tags=["Chat"])
+app.include_router(health.router, tags=["Health"])
 
 @app.post("/token")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     return await authenticate_user(form_data)
-
-@app.get("/")
-async def root():
-    return {"message": "GenAI FastAPI service running with Authentication, Caching & DB!"}

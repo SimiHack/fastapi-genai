@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('https://source.unsplash.com/1920x1080/?technology') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+        }
+        h1 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        p {
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: 500;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+            margin: 10px;
+        }
+        .button:hover {
+            background: linear-gradient(135deg, #0056b3, #003f7f);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to ChatGPT Assistant</h1>
+        <p>Click the button below to start chatting with ChatGPT Assistant.</p>
+        <a href="/chat" class="button">Open Chatbot</a>
+        <p>Or visit the API documentation:</p>
+        <a href="/docs" class="button">Swagger Docs</a>
+    </div>
+</body>
+</html>
