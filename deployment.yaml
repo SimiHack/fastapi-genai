@@ -17,40 +17,30 @@ spec:
         - name: fastapi
           image: fastapiacrnew.azurecr.io/my-fastapi-app:v1
           ports:
-            - containerPort: 8000
-          env:
-            - name: AZURE_OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: fastapi-secrets
-                  key: AZURE_OPENAI_API_KEY
-            - name: REDIS_URL
-              valueFrom:
-                secretKeyRef:
-                  name: fastapi-secrets
-                  key: REDIS_URL
-            - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: fastapi-secrets
-                  key: REDIS_PASSWORD
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: fastapi-secrets
-                  key: DATABASE_URL
-            - name: SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: fastapi-secrets
-                  key: SECRET_KEY
-            - name: OPENAI_API_TYPE
-              valueFrom:
-                secretKeyRef:
-                  name: fastapi-secrets
-                  key: OPENAI_API_TYPE
-            - name: OPENAI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: fastapi-secrets
-                  key: OPENAI_API_KEY
+            - containerPort: 8000  # Ensure this matches your app's port
+          envFrom:
+            - secretRef:
+                name: fastapi-secrets
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-service
+  namespace: default
+spec:
+  selector:
+    app: fastapi
+  ports:
+    - protocol: TCP
+      port: 80  # External port
+      targetPort: 8000  # Match the containerPort
+  type: LoadBalancer  # Exposes the service with a public IP
