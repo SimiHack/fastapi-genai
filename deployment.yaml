@@ -20,7 +20,7 @@ spec:
             - containerPort: 8000  # Ensure this matches your app's port
           envFrom:
             - secretRef:
-                name: fastapi-secrets
+                name: acr-secret
           resources:
             requests:
               memory: "512Mi"
@@ -28,6 +28,8 @@ spec:
             limits:
               memory: "1Gi"
               cpu: "500m"
+      imagePullSecrets:
+        - name: acr-secret
 
 ---
 
